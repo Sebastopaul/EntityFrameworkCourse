@@ -12,8 +12,8 @@ using MyWebApi;
 namespace MyWebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250407132702_ComplexMigration")]
-    partial class ComplexMigration
+    [Migration("20250407141129_ResetMigration")]
+    partial class ResetMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,7 +163,7 @@ namespace MyWebApi.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("PriceHistory");
+                    b.ToTable("PriceHistories");
                 });
 
             modelBuilder.Entity("MyWebApi.Models.Product", b =>
@@ -217,7 +217,7 @@ namespace MyWebApi.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("ProductInWarehouse");
+                    b.ToTable("ProductsInWarehouse");
                 });
 
             modelBuilder.Entity("MyWebApi.Models.Rating", b =>
@@ -243,7 +243,7 @@ namespace MyWebApi.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Rating");
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("MyWebApi.Models.User", b =>
@@ -276,7 +276,7 @@ namespace MyWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouse");
+                    b.ToTable("Warehouses");
                 });
 
             modelBuilder.Entity("MyWebApi.Models.Category", b =>
@@ -472,7 +472,7 @@ namespace MyWebApi.Migrations
 
                             b1.HasKey("WarehouseId");
 
-                            b1.ToTable("Warehouse");
+                            b1.ToTable("Warehouses");
 
                             b1.WithOwner()
                                 .HasForeignKey("WarehouseId");

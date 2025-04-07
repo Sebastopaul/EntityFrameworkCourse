@@ -26,6 +26,7 @@ public class Product
     public ICollection<Rating> Rating { get; set; } = new Collection<Rating>();
     [InverseProperty("Product")]
     public ICollection<PriceHistory> PriceHistory { get; set; } = new Collection<PriceHistory>();
+
     [InverseProperty("Product")]
-    public ICollection<ProductInWarehouse> ProductsInWarehouse { get; set; }
+    public ICollection<ProductInWarehouse> ProductsInWarehouse { get; set; } = new Collection<ProductInWarehouse>();
 }
