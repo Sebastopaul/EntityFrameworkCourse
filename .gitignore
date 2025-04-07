@@ -5,3 +5,4 @@ riderModule.iml
 /_ReSharper.Caches/
 /.idea
 MyWebApi/appsettings.json
+global.json
