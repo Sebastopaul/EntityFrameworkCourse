@@ -8,6 +8,7 @@ public class Product
 {
     [Key]
     [Column(Order = 0)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     [Required]
     [Column(Order = 1)]
@@ -16,9 +17,15 @@ public class Product
     [Required]
     [Column(Order = 2, TypeName = "nvarchar(255)")]
     public required string Name { get; set; }
-    public int Quantity { get; set; }
-    [Range(0, Int32.MaxValue)]
-    public int Price { get; set; }
+    [Required]
+    [Range(0, double.MaxValue)]
+    public double Price { get; set; }
     [InverseProperty("Product")]
     public ICollection<OrderItem> OrderItems { get; set; } = new Collection<OrderItem>();
+    [InverseProperty("Product")]
+    public ICollection<Rating> Rating { get; set; } = new Collection<Rating>();
+    [InverseProperty("Product")]
+    public ICollection<PriceHistory> PriceHistory { get; set; } = new Collection<PriceHistory>();
+    [InverseProperty("Product")]
+    public ICollection<ProductInWarehouse> ProductsInWarehouse { get; set; }
 }

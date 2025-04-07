@@ -8,6 +8,7 @@ public class Order
 {
     [Key]
     [Column(Order = 0)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     [Required]
     [Column(Order = 1, TypeName = "nvarchar(255)")]
