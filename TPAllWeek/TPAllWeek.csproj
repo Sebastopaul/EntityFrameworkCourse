@@ -40,7 +40,6 @@
       <Folder Include="Domain\Query\" />
       <Folder Include="Domain\Request\" />
       <Folder Include="Infrastructure\Database\" />
-      <Folder Include="Infrastructure\Database\Configurations\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
