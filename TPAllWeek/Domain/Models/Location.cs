@@ -2,8 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using TPAllWeek.Domain.Base;
+using TPAllWeek.Domain.Models.Owned;
 
-namespace TPAllWeek.Domain.Models.Owned;
+namespace TPAllWeek.Domain.Models;
 
 public class Location : BaseEntity
 {

@@ -3,6 +3,7 @@ using TPAllWeek.Domain.Base;
 
 namespace TPAllWeek.Applications.Base;
 
+[Service]
 public interface IBaseService<T> where T : BaseEntity
 {
     Task<T> GetById(int id);

@@ -12,4 +12,5 @@ public class Session : BaseEntity
     public required Event Event { get; set; }
     public required Room Room { get; set; }
     public required ICollection<UserInSession> SubscribedUsers = new Collection<UserInSession>();
+    public required ICollection<Rating> Ratings = new Collection<Rating>();
 }

@@ -1,4 +1,5 @@
-﻿using TPAllWeek.Domain.Base;
+﻿using System.Collections.ObjectModel;
+using TPAllWeek.Domain.Base;
 using TPAllWeek.Domain.Models.Owned;
 
 namespace TPAllWeek.Domain.Models;
@@ -12,6 +13,7 @@ public class User : BaseEntity
     public string? Phone { get; set; }
     public required string Password { get; set; }
     public string? JobTitle { get; set; }
-    public ICollection<UserInEvent> SubscribedEvents { get; set; }
-    public ICollection<UserInSession> SubscribedSessions { get; set; }
+    public required ICollection<UserInEvent> SubscribedEvents { get; set; } = new Collection<UserInEvent>();
+    public required ICollection<UserInSession> SubscribedSessions { get; set; } = new Collection<UserInSession>();
+    public required ICollection<Rating> SessionRatings { get; set; } = new Collection<Rating>();
 }
