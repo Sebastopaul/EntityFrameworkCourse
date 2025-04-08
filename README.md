@@ -5,6 +5,6 @@
 - [Notes](notes)
 - [TP](MyWebApi)
 
-## Day 2 - Bigger TP
+## Rest of the week - TP
 
-- [TP](TPDayTwo)
+- [TP](TPAllWeek)

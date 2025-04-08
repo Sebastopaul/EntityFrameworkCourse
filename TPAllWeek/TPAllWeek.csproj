@@ -22,7 +22,28 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\" />
+        <Content Update="appsettings.json">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Update="appsettings.Development.json">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="API\Controllers\" />
+      <Folder Include="Applications\Services\" />
+      <Folder Include="Domain\Dto\" />
+      <Folder Include="Domain\Query\" />
+      <Folder Include="Domain\Request\" />
+      <Folder Include="Infrastructure\Database\" />
+      <Folder Include="Infrastructure\Database\Configurations\" />
+      <Folder Include="Infrastructure\Repository\" />
+      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using TPDayTwo;
+using TPAllWeek.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,22 +19,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
 
-var app = builder.Build();
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<CoreDbContext>(options =>
 {
-    if (!options.IsConfigured)
-    {
-        if (app.Environment.IsDevelopment())
-        {
-            options.EnableSensitiveDataLogging()
-                .LogTo(Console.WriteLine, LogLevel.Information)
-                .EnableDetailedErrors();
-        }
-
-        options.UseSqlServer(builder.Configuration.GetConnectionString("Isitech"));
-    }
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Isitech"));
 });
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

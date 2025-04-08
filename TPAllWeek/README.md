@@ -20,7 +20,7 @@ Ce TP vise à évaluer votre maîtrise des concepts suivants :
 
 - **Framework** : ASP.NET Core 8 (ou version supérieure)
 - **ORM** : Entity Framework Core 8 (ou version supérieure)
-- **SGBD** : Au choix (SQL Server, PostgreSQL, MySQL, SQLite)
+- **SGBD** : Au choix (SQL Server, PostgreSQL, MySQL, SQLite) -> SQL Server
 - **Architecture** : Clean Architecture / Architecture en couches
 
 ## Fonctionnalités requises
