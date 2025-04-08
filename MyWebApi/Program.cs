@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MyWebApi;
+using MyWebApi.Interceptors;
+using MyWebApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +32,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 .EnableDetailedErrors();
         }
 
-        options.UseSqlServer(builder.Configuration.GetConnectionString("Isitech"));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("Isitech"))
+            .AddInterceptors(new TaggedQueryCommandInterceptor())
+            .UseAsyncSeeding(async (context, _, cancellationToken) =>
+            {
+                var testCategory = await context.Set<Category>().FirstOrDefaultAsync(b => b.Name == "test", cancellationToken);
+                if (testCategory == null)
+                {
+                    context.Set<Category>().Add(new Category { Name = "test" });
+                    await context.SaveChangesAsync(cancellationToken);
+                }
+            });;
     }
 });
 
