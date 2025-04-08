@@ -1,9 +1,10 @@
 ﻿namespace TPAllWeek.Domain.Models.Enums;
 
-public enum EventStatuses
+public enum EventStatus
 {
     Draft,
     Planned,
     InProgress,
+    Finished,
     Cancelled,
 }
