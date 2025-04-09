@@ -1,0 +1,14 @@
+﻿### GET all events
+GET http://localhost:5000/Event
+
+### GET one event
+GET http://localhost:5000/Event/{{id}}
+
+### POST an event
+POST http://localhost:5000/Event
+
+### PUT an event
+PUT http://localhost:5000/Event/{{id}}
+
+### DELETE an event
+DELETE http://localhost:5000/Event/{{id}}

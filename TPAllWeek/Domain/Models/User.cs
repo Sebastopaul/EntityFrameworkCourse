@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using TPAllWeek.Applications.Utils;
+using TPAllWeek.Application.Utils;
 using TPAllWeek.Domain.Base;
 using TPAllWeek.Domain.Models.Owned;
 
