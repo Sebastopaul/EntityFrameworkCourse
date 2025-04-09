@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="14.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,10 +36,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="API\Controllers\" />
-      <Folder Include="Domain\Dto\" />
-      <Folder Include="Domain\Query\" />
-      <Folder Include="Domain\Request\" />
       <Folder Include="Infrastructure\Database\" />
       <Folder Include="Migrations\" />
     </ItemGroup>

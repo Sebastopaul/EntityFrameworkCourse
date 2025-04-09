@@ -1,8 +1,8 @@
-﻿using TPAllWeek.Applications.Base;
+﻿using TPAllWeek.Application.Base;
 using TPAllWeek.Domain.Models;
 using TPAllWeek.Infrastructure.Repository;
 
-namespace TPAllWeek.Applications.Services;
+namespace TPAllWeek.Application.Services;
 
 public class UserInSessionService : BaseService<UserInSessionRepository, UserInSession>
 {

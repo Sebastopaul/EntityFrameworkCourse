@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace TPAllWeek.Applications.Utils;
+namespace TPAllWeek.Application.Utils;
 
 public static class Hash
 {

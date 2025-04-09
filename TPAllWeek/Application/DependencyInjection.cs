@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using TPAllWeek.Applications.Base;
-using TPAllWeek.Applications.Services;
+using TPAllWeek.Application.Base;
+using TPAllWeek.Application.Services;
 
-namespace TPAllWeek.Applications;
+namespace TPAllWeek.Application;
 
 public static class DependencyInjection
 {
@@ -21,5 +21,7 @@ public static class DependencyInjection
                 typesToRegister.serviceTypes.ForEach(typeToRegister =>
                     services.AddScoped(typeToRegister, typesToRegister.assignedType));
             });
+
+        services.AddAutoMapper(assembly);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using TPAllWeek.Domain.Base;
 using TPAllWeek.Infrastructure.Database;
+using TPAllWeek.Infrastructure.Exception;
 
 namespace TPAllWeek.Infrastructure.Base;
 
@@ -10,22 +12,33 @@ public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity>
     where TContext : CoreDbContext
 {
     protected readonly TContext DbContext;
-
+    
     public BaseRepository(TContext context)
     {
         DbContext = context;
     }
 
-    public async Task<TEntity> GetById(int id)
+    public void SaveChangesAsync()
     {
         try
         {
-            return await DbContext.Set<TEntity>().FindAsync(id)
-                ?? throw new NullReferenceException($"Entity of type {typeof(TEntity)} not found with id {id}");
+            DbContext.SaveChangesAsync();
         }
-        catch (Exception ex)
+        catch (System.Exception e)
         {
-            throw new Exception($"Impossible de récupérer l'entité: {ex.Message}");
+            throw new SaveChangesException($"An error occured while saving changes: {e.Message}", e);
+        }
+    }
+    
+    public async Task<TEntity?> GetById(int id)
+    {
+        try
+        {
+            return await DbContext.Set<TEntity>().FindAsync(id);
+        }
+        catch (System.Exception e)
+        {
+            throw new EntityNotFoundException($"Cannot find entity of type {nameof(TEntity)} with provided id {id}: {e.Message}", e);
         }
     }
 
@@ -35,9 +48,9 @@ public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity>
         {
             return await DbContext.Set<TEntity>().AsNoTracking().ToListAsync();
         }
-        catch (Exception ex)
+        catch (System.Exception e)
         {
-            throw new Exception($"Impossible de récupérer les entités: {ex.Message}");
+            throw new EntityNotFoundException($"Cannot find entities of type {nameof(TEntity)}: {e.Message}", e);
         }
     }
 
@@ -47,9 +60,34 @@ public class BaseRepository<TEntity, TContext> : IBaseRepository<TEntity>
         {
             return await DbContext.Set<TEntity>().Where(where).AsNoTracking().ToListAsync();
         }
-        catch (Exception ex)
+        catch (System.Exception e)
         {
-            throw new Exception($"Impossible de récupérer les entités: {ex.Message}");
+            throw new EntityNotFoundException($"Cannot find entities of type {nameof(TEntity)}: {e.Message}", e);
+        }
+    }
+    
+    public ValueTask<EntityEntry<TEntity>> CreateAsync(TEntity entity)
+    {
+        try
+        {
+            return DbContext.Set<TEntity>().AddAsync(entity);
+        }
+        catch (System.Exception e)
+        {
+            throw new EntityCreationException($"Could not create entity of type {nameof(TEntity)}: {e.Message}", e);
+        }
+    }
+
+    public bool DeleteAsync(TEntity entity)
+    {
+        try
+        {
+            DbContext.Set<TEntity>().Remove(entity);
+            return true;
+        }
+        catch (System.Exception e)
+        {
+            throw new EntityDeletionException($"Could not create entity of type {nameof(TEntity)}: {e.Message}", e);
         }
     }
 }
