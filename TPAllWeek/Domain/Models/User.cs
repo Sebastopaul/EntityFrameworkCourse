@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using TPAllWeek.Applications.Utils;
 using TPAllWeek.Domain.Base;
 using TPAllWeek.Domain.Models.Owned;
 
@@ -11,7 +13,12 @@ public class User : BaseEntity
     public required string LastName { get; set; }
     public string? Email { get; set; }
     public string? Phone { get; set; }
-    public required string Password { get; set; }
+    public string StoredPassword { get; set; } = String.Empty;
+    [NotMapped]
+    public required string Password {
+        get { return StoredPassword; }
+        set { StoredPassword = Hash.GetHashString(value); }
+    }
     public string? JobTitle { get; set; }
     public required ICollection<UserInEvent> SubscribedEvents { get; set; } = new Collection<UserInEvent>();
     public required ICollection<UserInSession> SubscribedSessions { get; set; } = new Collection<UserInSession>();

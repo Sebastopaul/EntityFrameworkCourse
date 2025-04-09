@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TPAllWeek.Domain.Models.Owned;
 
-[Owned]
 public class Address
 {
     public required string Street { get; set; }
