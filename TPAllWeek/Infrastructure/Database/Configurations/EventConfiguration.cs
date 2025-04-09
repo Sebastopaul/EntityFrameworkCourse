@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TPAllWeek.Domain.Models;
+using TPAllWeek.Domain.Models.Enums;
 
 namespace TPAllWeek.Infrastructure.Database.Configurations;
 
@@ -26,7 +28,7 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(e => e.Description).HasMaxLength(1024).IsUnicode();
         builder.Property(e => e.StartDate).IsRequired();
         builder.Property(e => e.EndDate).IsRequired();
-        builder.Property(e => e.Status).IsRequired();
+        builder.Property(e => e.Status).IsRequired().HasConversion(new EnumToStringConverter<EventStatus>()).HasMaxLength(16);
         builder.HasOne(e => e.Category).WithMany(c => c.Events).HasForeignKey(e => e.CategoryId);
         builder.HasOne(e => e.Location).WithMany(l => l.Events).HasForeignKey(e => e.LocationId);
         builder.HasMany(e => e.SubscribedUsers).WithOne(e => e.Event).HasForeignKey(e => e.EventId).OnDelete(DeleteBehavior.Cascade);
