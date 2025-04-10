@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TPAllWeek.Application;
-using TPAllWeek.Infrastructure;
 using TPAllWeek.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +23,8 @@ builder.Services.AddDbContext<CoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Isitech"));
 });
 
-builder.Services.AddServices();
-builder.Services.AddRepositories();
+//builder.Services.AddServices();
+//builder.Services.AddRepositories();
 
 var app = builder.Build();
 

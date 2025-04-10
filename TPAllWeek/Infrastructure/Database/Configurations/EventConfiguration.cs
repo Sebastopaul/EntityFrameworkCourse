@@ -33,5 +33,29 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.HasOne(e => e.Location).WithMany(l => l.Events).HasForeignKey(e => e.LocationId);
         builder.HasMany(e => e.SubscribedUsers).WithOne(e => e.Event).HasForeignKey(e => e.EventId).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(e => e.Sessions).WithOne(e => e.Event).HasForeignKey(e => e.EventId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasData([
+            new Event()
+            {
+                Id = 1,
+                Title = "Event 1",
+                Description = "Event 1",
+                LocationId = 1,
+                StartDate = new DateOnly(2025, 04, 28),
+                EndDate = new DateOnly(2025, 04, 29),
+                CategoryId = 1,
+                Status = EventStatus.Planned,
+            },
+            new Event()
+            {
+                Id = 2,
+                Title = "Event 2",
+                Description = "Event 2",
+                LocationId = 2,
+                StartDate = new DateOnly(2025, 04, 28),
+                EndDate = new DateOnly(2025, 04, 29),
+                CategoryId = 2,
+                Status = EventStatus.Planned,
+            },
+        ]);
     }
 }

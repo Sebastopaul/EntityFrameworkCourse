@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TPAllWeek.Domain.Models;
+using TPAllWeek.Domain.Models.Owned;
 
 namespace TPAllWeek.Infrastructure.Database;
 

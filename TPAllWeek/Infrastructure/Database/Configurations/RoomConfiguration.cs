@@ -16,5 +16,21 @@ public class RoomConfiguration : IEntityTypeConfiguration<Room>
         builder.Property(l => l.Capacity).IsRequired();
         builder.HasOne(r => r.Location).WithMany(l => l.Rooms).HasForeignKey(r => r.LocationId);
         builder.HasMany(r => r.Sessions).WithOne(s => s.Room).HasForeignKey(r => r.RoomId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasData([
+            new Room()
+            {
+                Id = 1,
+                Name = "Room 1",
+                Capacity = 10,
+                LocationId = 1
+            },
+            new Room()
+            {
+                Id = 2,
+                Name = "Room 1",
+                Capacity = 10,
+                LocationId = 2
+            },
+        ]);
     }
 }

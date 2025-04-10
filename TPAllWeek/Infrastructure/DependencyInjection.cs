@@ -5,6 +5,8 @@ using TPAllWeek.Infrastructure.Repository;
 
 namespace TPAllWeek.Infrastructure;
 
+// Most probably supposed to be used when we have several projects
+
 public static class DependencyInjection
 {
     public static void AddRepositories(this IServiceCollection services)

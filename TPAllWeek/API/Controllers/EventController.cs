@@ -17,7 +17,6 @@ public class EventController : ControllerBase
     public EventController(EventService eventService)
     {
         _eventService = eventService;
-        
     }
 
     [HttpGet]

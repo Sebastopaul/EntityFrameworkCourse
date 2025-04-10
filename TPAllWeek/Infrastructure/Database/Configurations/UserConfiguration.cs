@@ -11,12 +11,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable(nameof(User));
         builder.HasKey(u => u.Id).HasAnnotation("DatabaseGenerated", DatabaseGeneratedOption.Identity);
-        builder.OwnsOne(u => u.Profile, profileBuilder =>
-        {
-            profileBuilder.Property(p => p.Image);
-            profileBuilder.Property(p => p.Name).IsRequired().HasMaxLength(64);
-            profileBuilder.Property(p => p.Description).HasMaxLength(1024);
-        });
         builder.Property(u => u.FirstName).IsRequired().HasMaxLength(64);
         builder.Property(u => u.LastName).IsRequired().HasMaxLength(64);
         builder.Property(u => u.Email).HasMaxLength(64);
@@ -28,5 +22,37 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasMany(u => u.SubscribedEvents).WithOne(e => e.User).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(u => u.SubscribedSessions).WithOne(s => s.User).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(u => u.SessionRatings).WithOne(r => r.User).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
+        builder.HasData([
+            new User
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@gmail.com",
+                Password = "myPassword",
+            },
+            new User
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@gmail.com",
+                Password = "myPassword",
+            },
+        ]);
+        builder.OwnsOne(u => u.Profile, profileBuilder =>
+        {
+            profileBuilder.Property(p => p.Image);
+            profileBuilder.Property(p => p.Name).IsRequired().HasMaxLength(64);
+            profileBuilder.Property(p => p.Description).HasMaxLength(1024);
+        }).HasData([
+            new {
+                UserId = 1,
+                Name = "john Doe",
+            },
+            new {
+                UserId = 2,
+                Name = "John Doe",
+            }
+        ]);
+
     }
 }

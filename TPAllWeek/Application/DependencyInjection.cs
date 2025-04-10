@@ -5,6 +5,8 @@ using TPAllWeek.Application.Services;
 
 namespace TPAllWeek.Application;
 
+// Most probably supposed to be used when we have several projects
+
 public static class DependencyInjection
 {
     public static void AddServices(this IServiceCollection services)

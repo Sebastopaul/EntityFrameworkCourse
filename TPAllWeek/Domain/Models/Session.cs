@@ -9,9 +9,9 @@ public class Session : BaseEntity
     public string? Description { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
-    public required int EventId { get; set; }
+    public int EventId { get; set; }
     public int? RoomId { get; set; }
-    public required Event Event { get; set; }
+    public Event Event { get; set; }
     public Room? Room { get; set; }
     public ICollection<UserInSession> SubscribedUsers = new Collection<UserInSession>();
     public ICollection<Rating> Ratings = new Collection<Rating>();

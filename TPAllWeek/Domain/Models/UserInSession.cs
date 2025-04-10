@@ -8,8 +8,8 @@ public class UserInSession : BaseEntity
     public required DateTime RegistrationDate { get; set; }
     public required UserInSessionRole Role { get; set; }
     public required UserInSessionStatus AttendanceStatus { get; set; }
-    public required int UserId { get; set; }
-    public required int SessionId { get; set; }
+    public int UserId { get; set; }
+    public int SessionId { get; set; }
     public required User User { get; set; }
     public required Session Session { get; set; }
 }

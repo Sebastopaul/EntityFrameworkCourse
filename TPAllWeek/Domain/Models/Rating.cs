@@ -10,7 +10,7 @@ public class Rating : BaseEntity
     public string? Comment { get; set; }
     public required DateTime Date { get; set; }
     public int? UserId { get; set; }
-    public required int SessionId { get; set; }
+    public int SessionId { get; set; }
     public User? User { get; set; }
-    public required Session Session { get; set; }
+    public Session Session { get; set; }
 }

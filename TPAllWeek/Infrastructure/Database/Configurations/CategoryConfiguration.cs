@@ -13,6 +13,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.HasKey(c => c.Id).HasAnnotation("DatabaseGenerated", DatabaseGeneratedOption.Identity);
         builder.Property(c => c.Name).IsRequired().HasMaxLength(64);
         builder.HasIndex(c => c.Name).IsUnique();
-        builder.HasMany(e => e.Events).WithOne(e => e.Category).HasForeignKey(e => e.CategoryId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasMany(c => c.Events).WithOne(e => e.Category).HasForeignKey(e => e.CategoryId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasData([
+            new Category { Id = 1, Name = "Category 1" },
+            new Category { Id = 2, Name = "Category 2" },
+        ]);
     }
 }
